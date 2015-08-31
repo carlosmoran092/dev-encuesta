@@ -3,8 +3,9 @@
 <head>
 
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>APP PRUEBA</title>
 </head>
+
 <body>
 
   <script>
@@ -13,10 +14,10 @@
       console.log(response);
 
       if (response.status === 'connected') {
-        // Logged into your app and Facebook.
+
         testAPI();
       } else if (response.status === 'not_authorized') {
-        // The person is logged into Facebook, but not your app.
+
         document.getElementById('status').innerHTML = 'Please log ' +
           'into this app.';
       } else {
@@ -32,15 +33,13 @@
     }
 
     window.fbAsyncInit = function() {
+
     FB.init({
-      appId      : '398551460344466',
-      cookie     : true,  // enable cookies to allow the server to access
-                          // the session
-      xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.2' // use version 2.2
-    });
-
-
+    appId      : '398551460344466',
+    status     : true,
+    xfbml      : true,
+    version    : 'v2.4'
+  });
 
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
@@ -48,7 +47,6 @@
 
     };
 
-    // Load the SDK asynchronously
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
@@ -57,18 +55,23 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    // Here we run a very simple test of the Graph API after login is
-    // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
       console.log('Welcome!  Fetching your information.... ');
+      /* initial
       FB.api('/me', function(response) {
         console.log('Successful login for: ' + response.name);
         document.getElementById('status').innerHTML =
-          'Thanks for logging in, ' + response.name + '!';
+          'Te has logueado con exito, ' + response.age_range +'!';
+      }); */
+      FB.api('/me', {fields: 'name,first_name,last_name,age_range,address,gender,'}, function(response) {
+        console.log('Successful login for: ' + response.name);
+        document.getElementById('status').innerHTML =
+          'Te has logueado con exito, ' + response.name +'!';
       });
+
     }
   </script>
-
+<br>
   <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
 
@@ -76,5 +79,6 @@
 </div>
 
 
+<script src="bower_components\jquery\dist\jquery.js"/>
 </body>
 </html>
