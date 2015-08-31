@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-  <meta charset="UTF-8">
-  <title>APP PRUEBA</title>
-</head>
-
-<body>
-
-  <script>
-    function statusChangeCallback(response) {
+ function statusChangeCallback(response) {
       console.log('statusChangeCallback');
       console.log(response);
       if (response.status === 'connected') {
@@ -41,7 +30,6 @@
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
-
     };
 
     (function(d, s, id) {
@@ -51,32 +39,15 @@
       js.src = "//connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-var gender= response.gender; var name=response.name; var age=response.age_range.min;
+var gender= response.gender; var name=response.name; var age=age_range.min;
     function testAPI() {
       console.log('Welcome!  Fetching your information.... ');
-      FB.api('/me', {fields: 'name,first_name,last_name,picture,age_range,address,gender','location'}, function(response) {
+      FB.api('/me', {fields: 'name,first_name,last_name,age_range,address,gender'}, function(response) {
         console.log('Successful login for: ' + response.name);
-        console.log(response.picture.data.url);
-        console.log(response.location);
+        console.log(response.age_range);
         document.getElementById('status').innerHTML =
           '<table><td>Nombre</td><td>Genero</td><td>Edad</td><th>'
-              + response.name +'</th><th>'+ response.gender +'</th><th>'+ response.age_range.min +'</th></table>';
+              + response.name +'</th><th>'+ response.gender +'</th><th>'+ response.age_range.min + '</th></table>';
 
       });
-
     }
-  </script>
-<br>
-  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
-
-</div>
-
-
-
-<script src="bower_components\jquery\dist\jquery.js"/>
-
-</body>
-</html>
