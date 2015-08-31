@@ -63,10 +63,12 @@
         document.getElementById('status').innerHTML =
           'Te has logueado con exito, ' + response.age_range +'!';
       }); */
-      FB.api('/me', {fields: 'name,first_name,last_name,age_range,address,gender,'}, function(response) {
+      FB.api('/me', {fields: 'name,first_name,last_name,age_range,address,gender'}, function(response) {
         console.log('Successful login for: ' + response.name);
+        console.log(response.age_range);
         document.getElementById('status').innerHTML =
-          'Te has logueado con exito, ' + response.name +'!';
+          '<table><td>Nombre</td><td>Genero</td><td>Edad</td><th>'
+              + response.name +'</th><th>'+ response.gender +'</th><th>'+ response.age_range.min + '</th></table>';
       });
 
     }
